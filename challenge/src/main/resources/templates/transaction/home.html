@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="~{base :: head}"></head>
+<body>
+<section class="my-5">
+  <div class="container">
+    <div th:replace="~{base :: titulo('IMPORTAR TRANSAÇÕES')}"></div>
+
+    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+    <form method="post" th:action="@{transaction/upload}" enctype="multipart/form-data">
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" name="file" class="custom-file-input" id="file">
+            <label class="custom-file-label" for="file">Selecione um arquivo</label>
+          </div>
+        </div>
+        <small id="inputFileHelp" class="form-text text-muted">Selecione o arquivo para realizar
+          o upload</small>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Importar</button>
+    </form>
+
+  </div>
+
+  </div>
+</section>
+</body>
+</html>
+
+<script>
+  /* Show file value after file select */
+  document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    let fileName = document.getElementById("file").files[0].name;
+    let nextSibling = e.target.nextElementSibling;
+    nextSibling.innerText = fileName;
+  });
+</script>
