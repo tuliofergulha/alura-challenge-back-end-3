@@ -31,7 +31,7 @@ public class Transaction {
 
         // check if file is empty
         if (file.isEmpty()) {
-            attributes.addFlashAttribute("message", "Please select a file to upload.");
+            attributes.addFlashAttribute("message", "Selecione um arquivo para realizar a importação");
             return "redirect:/transaction";
         }
 
