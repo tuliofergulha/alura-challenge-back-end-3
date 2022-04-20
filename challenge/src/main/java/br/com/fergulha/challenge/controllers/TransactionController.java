@@ -17,9 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/transaction")
-public class Transaction {
-
-    private final String UPLOAD_DIR = "./uploads/";
+public class TransactionController {
 
     @GetMapping
     public String index() {
@@ -31,7 +29,8 @@ public class Transaction {
 
         // check if file is empty
         if (file.isEmpty()) {
-            attributes.addFlashAttribute("message", "Selecione um arquivo para realizar a importação");
+            attributes.addFlashAttribute("message",
+                "Selecione um arquivo para realizar a importação");
             return "redirect:/transaction";
         }
 
@@ -40,7 +39,8 @@ public class Transaction {
 
         // save the file on the local file system
         try {
-            Path path = Paths.get(UPLOAD_DIR + fileName);
+            String uploadDir = "./uploads/";
+            Path path = Paths.get(uploadDir + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
