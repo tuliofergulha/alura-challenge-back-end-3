@@ -26,18 +26,14 @@ public class TransactionController {
 
     @PostMapping("/upload")
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-
-        // check if file is empty
         if (file.isEmpty()) {
             attributes.addFlashAttribute("message",
                 "Selecione um arquivo para realizar a importação");
             return "redirect:/transaction";
         }
 
-        // normalize the file path
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
-        // save the file on the local file system
         try {
             String uploadDir = "./uploads/";
             Path path = Paths.get(uploadDir + fileName);
@@ -46,7 +42,6 @@ public class TransactionController {
             e.printStackTrace();
         }
 
-        // return success response
         attributes.addFlashAttribute("message",
             "O arquivo " + fileName + " foi importado com sucesso!");
 
