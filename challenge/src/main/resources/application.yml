@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Alura Backend Challenge 3
+  profiles:
+    active: default
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3307/challenge
